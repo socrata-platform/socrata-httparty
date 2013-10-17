@@ -16,6 +16,6 @@ object NoSqlTeaDatabase extends TeaDatabase {
                  "rooibos" -> 212,
                  "black" -> 212)
   def lookup(tea:TeaType) = teas.get(tea.variant)
-  def list = teas.keys.toList.map(TeaType(_))
+  def list = teas.keys.toList.map(t => TeaType(t,Some("/tea/"+t)))
 
 }

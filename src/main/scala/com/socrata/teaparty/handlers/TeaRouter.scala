@@ -14,7 +14,7 @@ class TeaRouter(teas:HttpService,
                 coffeeResource:HttpService) {
 
   private[this] implicit val teaExtractor = new Extractor[TeaType] {
-    def extract(s:String):Option[TeaType] = Some(new TeaType(s))
+    def extract(s:String):Option[TeaType] = Some(new TeaType(s, None))
   }
 
   val router = Routes(

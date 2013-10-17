@@ -17,7 +17,8 @@ libraryDependencies ++= Seq(
   "com.netflix.curator" % "curator-x-discovery" % "1.3.3",
   "org.scalatest" %% "scalatest" % "1.9.1" % "test",
   "org.scalacheck" %% "scalacheck" % "1.10.0" % "optional",
-   "com.rojoma" %% "rojoma-json" % "[2.0.0,3.0.0)"
+   "com.rojoma" %% "rojoma-json" % "[2.0.0,3.0.0)",
+   "com.rojoma" %% "simple-arm" % "[1.1.10,2.0.0)"
   )
 
 
