@@ -1,0 +1,27 @@
+HOST: http://www.google.com/
+
+--- HttParty ---
+
+---
+It is a HtTeaParty.  Find your tea and optimal brewing temperatures.
+---
+
+--
+
+--
+
+List teas known to our system
+GET /tea
+< 200
+< Content-Type: application/json
+[{"variant":"oolong"},{"variant":"green"},{"variant":"black"},{"variant":"rooibos"},{"variant":"white"}]
+
+Get a particular tea type
+GET /tea/{id}
+< 200
+< Content-Type: application/json
+{"content":{"variant":"white"},"temperature":180}
+
+Coffee??
+GET /coffee
+< 418 
