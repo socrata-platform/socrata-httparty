@@ -5,7 +5,7 @@ import com.socrata.http.server.responses._
 import com.socrata.http.server.implicits._
 import com.rojoma.json.util.JsonUtil.renderJson
 import com.socrata.teaparty.teadatabase.TeaDatabase
-import com.socrata.teaparty.{TeaPot, TeaType}
+import com.socrata.teaparty.{TeaRef, TeaPot, TeaType}
 import com.socrata.teaparty.teadatabase.TeaDatabase
 import javax.servlet.http.HttpServletResponse
 import java.io.{InputStream, OutputStream}
@@ -51,7 +51,7 @@ class TeaService(teaDatabase:TeaDatabase) {
       req =>
         val teas = teaDatabase.list
 
-        OK ~> ContentType("application/json") ~> Content(renderJson(teas))
+        OK ~> ContentType("application/json") ~> Content(renderJson(teas.map(t => TeaRef("/tea/"+t.variant))))
     }
   }
 

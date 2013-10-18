@@ -3,7 +3,7 @@ package com.socrata.teaparty
 import com.rojoma.json.util.AutomaticJsonCodecBuilder
 
 
-case class TeaType(variant:String, url:Option[String])
+case class TeaType(variant:String)
 object TeaType{
   implicit val teaCodec = AutomaticJsonCodecBuilder[TeaType]
 }
@@ -15,4 +15,11 @@ object TeaPot {
   implicit val teapotCodec = AutomaticJsonCodecBuilder[TeaPot]
 }
 
+
+case class TeaRef(url:String)
+
+object TeaRef {
+  implicit val teaRefCodec = AutomaticJsonCodecBuilder[TeaRef]
+
+}
 
