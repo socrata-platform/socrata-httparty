@@ -1,7 +1,5 @@
 package com.socrata.teaparty.handlers
 
-import com.socrata.http.server.{HttpResponse, SimpleFilter}
-import javax.servlet.http.HttpServletRequest
 import java.net.URLDecoder
 
 object  QueryExtractor {
