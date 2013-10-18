@@ -4,27 +4,26 @@ import com.socrata.http.server.routing.SimpleResource
 import com.socrata.http.server.responses._
 import com.socrata.http.server.implicits._
 import com.rojoma.json.util.JsonUtil.renderJson
-import com.socrata.teaparty.teadatabase.TeaDatabase
 import com.socrata.teaparty._
-import com.socrata.teaparty.teadatabase.TeaDatabase
 import javax.servlet.http.HttpServletResponse
 import java.io.{InputStream, OutputStream}
 import com.rojoma.simplearm.util._
-import scala.runtime.ObjectRef
-import scala.Some
+import com.socrata.teaparty.components.TeaReaderComponent
 
-class TeaService(teaDatabase:TeaDatabase) {
+class TeaService() {
+  self:TeaReaderComponent =>
+
   def teaPotJson(content:String) = OK ~> ContentType("application/json") ~> Content(content)
+  val teaReader = self.TeaReader()
 
   case class serviceLookup(tea:TeaType) extends SimpleResource {
-
     override def get = { req =>
       if (tea.variant == "earlgrey") {
         superSecretDontLookHere
       }
       else {
-        teaDatabase.lookup(tea) match {
-          case Some(i) => teaPotJson(renderJson(TeaPot(tea, Right(i))))
+        teaReader.lookupTea(tea) match {
+          case Some(t) => teaPotJson(renderJson(t))
           case None => NotFound ~> Content("unknown tea type")
         }
       }
@@ -47,8 +46,7 @@ class TeaService(teaDatabase:TeaDatabase) {
   case object listTeas extends SimpleResource {
     override def get = {
       req =>
-        val teas = teaDatabase.list
-
+        val teas = teaReader.list
         OK ~> ContentType("application/json") ~> Content(renderJson(teas.map(t => TeaReference("/tea/"+t.variant,t))))
     }
   }

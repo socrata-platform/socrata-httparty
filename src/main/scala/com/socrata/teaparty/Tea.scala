@@ -37,7 +37,7 @@ object TeaType{
 }
 
 
-case class TeaPot(content:TeaType, temperature:Either[String,Int])
+case class TeaPot(content:TeaType, temperature:Int)
 
 object TeaPot {
   implicit val teapotCodec = AutomaticJsonCodecBuilder[TeaPot]

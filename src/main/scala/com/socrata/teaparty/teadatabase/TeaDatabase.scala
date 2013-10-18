@@ -9,7 +9,7 @@ trait TeaDatabase {
 }
 
 
-object NoSqlTeaDatabase extends TeaDatabase {
+trait NoSqlTeaDatabase extends TeaDatabase {
   val teas = Map("oolong" -> 190,
                  "green" -> 155,
                  "white" -> 180,

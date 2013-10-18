@@ -9,10 +9,11 @@ import com.netflix.curator.{retry => retryPolicies}
 import com.netflix.curator.x.discovery.ServiceDiscoveryBuilder
 import com.socrata.http.server.curator.CuratorBroker
 import com.rojoma.simplearm.util._
+import com.socrata.teaparty.components.TeaReaderFromDatabase
 
 
 object TeaServer extends App {
-  val teaService = new TeaService(NoSqlTeaDatabase)
+  val teaService = new TeaService() with TeaReaderFromDatabase with NoSqlTeaDatabase
   val coffeeService = new CoffeeService()
   val router =  new TeaRouter(
     teas = teaService.listTeas,
