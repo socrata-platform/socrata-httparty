@@ -10,7 +10,7 @@ import com.netflix.curator.x.discovery.ServiceDiscoveryBuilder
 import com.socrata.http.server.curator.CuratorBroker
 import com.rojoma.simplearm.util._
 import com.socrata.teaparty.components.TeaReaderFromDatabase
-
+import org.apache.curator.x.discovery.{ServiceDiscovery => ASD}
 
 object TeaServer extends App {
   val teaService = new TeaService() with TeaReaderFromDatabase with NoSqlTeaDatabase
@@ -41,11 +41,9 @@ object TeaServer extends App {
     val server = new SocrataServerJetty(
       handler,
       port = 7345,
-      broker = new CuratorBroker[Void](discovery, "localhost", "teaparty", None),
+      broker = new CuratorBroker[Void](discovery.asInstanceOf[ASD[Void]], "localhost", "teaparty", None),
       deregisterWaitMS = 1000
-
     )
     server.run()
   }
-
 }
