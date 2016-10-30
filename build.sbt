@@ -7,8 +7,8 @@ name := "HttParty"
 scalaVersion := "2.10.3"
 
 resolvers ++= Seq(
-  "socrata maven" at "https://repository-socrata-oss.forge.cloudbees.com/release",
-  "socrata maven-snap" at "https://repository-socrata-oss.forge.cloudbees.com/snapshot")
+  "socrata maven" at "https://repo.socrata.com/artifactory/libs-release",
+  "socrata maven-snap" at "https://repo.socrata.com/artifactory/libs-snapshot")
 
 
 libraryDependencies ++= Seq(
